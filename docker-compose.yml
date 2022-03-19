@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  database:
+   container_name: database-sql-server
+   image: mcr.microsoft.com/mssql/server
+   environment:
+    - SA_PASSWORD=Pizz@Nice
+    - ACCEPT_EULA=Y
+   ports:
+    - "5400:1433"
+   networks:
+    - default-network
+
+  app-pocchangetracker:
+    container_name: app-pocchangetracker
+    image: ${DOCKER_REGISTRY-}pocchangetracker
+    build:
+      context: .
+      dockerfile: PocChangeTracker/Dockerfile
+    networks:
+    - default-network
+
+volumes:
+  mssqlsystem:
+    external: true
+  mssqluser:
+    external: true
+
+networks:
+  default-network:
