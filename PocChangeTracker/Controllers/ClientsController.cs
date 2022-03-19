@@ -64,6 +64,7 @@ namespace PocChangeTracker.Controllers
                 var currentValue = prop.CurrentValue!.ToString();
                 var originalValue = prop.OriginalValue!.ToString();
 
+                
                 _logger.LogInformation($"Property: {prop.Metadata.Name} - IsModified: {prop.IsModified} - CurrentValue: {prop.CurrentValue} - OriginalValue {prop.OriginalValue}");
             }
         }
